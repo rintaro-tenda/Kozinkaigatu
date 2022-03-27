@@ -1,0 +1,16 @@
+create table companies
+(id INTEGER NOT NULL,
+name VARCHAR(100) NOT NULL,
+establishment_date DATE,
+PRIMARY KEY (id));
+
+create table members
+(id INTEGER NOT NULL,
+name VARCHAR(128) NOT NULL,
+address VARCHAR(128),
+PRIMARY KEY (id));
+
+SELECT
+  DISTINCT(dept_no) AS uniq_debt_no
+FROM
+  dept_manager;
