@@ -1,26 +1,5 @@
 <?php
-
-require __DIR__ . '../../vendor/autoload.php';
-
-//データベースに接続する
-function dbConnect() {
-    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/..");
-    $dotenv->load();
-
-    $dbHost = $_ENV['DB_HOST'];
-    $dbUsername = $_ENV['DB_USERNAME'];
-    $dbPassword = $_ENV['DB_PASSWORD'];
-    $dbDatabase = $_ENV['DB_DATABASE'];
-
-    $link = mysqli_connect($dbHost, $dbUsername,  $dbPassword, $dbDatabase);
-
-    if (!$link) {
-        print 'Error: データベースに接続できませんでした' . PHP_EOL;
-        print 'Debugging error: ' . mysqli_connect_error() . PHP_EOL;
-        exit;
-    }
-    return $link;
-}
+require_once __DIR__ . '/lib/mysqli.php';
 
 function dropTable($link)
 {
@@ -39,10 +18,10 @@ function createTable($link)
     $createTableSql = <<<EOT
     CREATE TABLE memo (
         id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(255),
-        establish_date DATE,
-        founder VARCHAR(255),
-        created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+        title VARCHAR(255),
+        date DATE,
+        content VARCHAR(255),
+        counts CHAR(3)
         ) DEFAULT CHARACTER SET=utf8mb4;
     EOT;
     $result = mysqli_query($link, $createTableSql);
