@@ -1,8 +1,3 @@
-<?php
-$title = '登録ページ';
-$content = __DIR__ . '/views/new.php';
-include __DIR__ . '/views/layout.php';
-?>
 <body>
     <h1>メモ帳</h1>
     <form action="create.php" method="post">
